@@ -6,6 +6,8 @@ import { Router, Route, Switch } from 'react-router-dom';
 
 import GalleryHome from './pages/GalleryHome';
 
+import PersonalGallery from './pages/PersonalGallery';
+
 import history from '../history';
 
 import Header from './Header';
@@ -39,7 +41,7 @@ const App = (props) => {
 				<div className={classes.container_margin_top}>
 					<Switch>
 						<Route path='/' exact component={GalleryHome}/>
-
+						<Route path='/personal-gallery' exact component={PersonalGallery}/>
 					</Switch>
 				</div>
 				<SideDrawer/>

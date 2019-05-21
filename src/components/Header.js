@@ -18,6 +18,8 @@ import { sideBarOpen } from '../actions';
 
 import { connect } from 'react-redux';
 
+import { Link } from 'react-router-dom'
+
 const styles={
 	header_style:{
 		background:'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
@@ -42,9 +44,11 @@ class Header extends React.Component{
 			<div>
 				<AppBar className={classes.header_style} position="fixed" >
 					<Toolbar>
-						<Typography className={classes.grow} variant="body2" color="inherit">
-							Surf Ya Photos!
-						</Typography>
+						<Link to="/"  style={{ textDecoration: 'none', color: 'white' }} className={classes.grow}>
+							<Typography  variant="body2" color="inherit">
+								Surf Ya Photos!
+							</Typography>
+						</Link>
 						<IconButton
 							color="inherit"
 							aria-label="Open drawer"

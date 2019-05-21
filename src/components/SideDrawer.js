@@ -7,12 +7,26 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 
 import { connect } from 'react-redux';
 
 import { sideBarClose } from '../actions';
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Link } from 'react-router-dom'
+
+import { 
+  faStroopwafel,
+  faList,
+  faUser
+ } from '@fortawesome/free-solid-svg-icons'
+
+library.add(
+  faStroopwafel, 
+  faList,
+  faUser
+)
 
 const styles = {
   list: {
@@ -35,12 +49,22 @@ class SideDrawer extends React.Component {
     const sideList = (
       <div className={classes.list}>
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+          <ListItem button>
+            <ListItemIcon>
+              <FontAwesomeIcon icon="user"/>
+            </ListItemIcon>
+            <ListItemText primary={"Personal Info"}/>
+          </ListItem>
+
+          <Link to="/personal-gallery" style={{ textDecoration: 'none' }}>
+            <ListItem button>
+                <ListItemIcon>
+                  <FontAwesomeIcon icon="list"/>
+                </ListItemIcon>
+                <ListItemText primary={"My Picked Photos"}/>
             </ListItem>
-          ))}
+          </Link>
+
         </List>
       </div>
     );
@@ -77,4 +101,5 @@ const mapStateToProps = (state) => {
     sideBarStatus: state.sideBar.sideBarStatus
   }
 }
+
 export default withStyles(styles)(connect(mapStateToProps,{sideBarClose})(SideDrawer));
