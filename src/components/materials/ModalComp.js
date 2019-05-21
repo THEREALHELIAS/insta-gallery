@@ -95,7 +95,7 @@ class ModalComp extends React.Component{
 							          <img alt={photo.alt_description} src={photo.user.profile_image.medium}/>
 							        </Avatar>
 							      }
-							      title={photo.alt_description}
+							      title={photo.user.name}
 							      subheader={moment(photo.updated_at).calendar()}
 			       			/>
 			       			<CardMedia				   

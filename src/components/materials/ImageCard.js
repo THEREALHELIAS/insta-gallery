@@ -21,6 +21,7 @@ import {connect} from 'react-redux';
 const styles = theme => ({
   card: {
     maxWidth: 400,
+    maxHeight: 600
   },
   media: {
     height: 0,
@@ -59,6 +60,25 @@ class ImageCard extends React.Component {
     this.props.modalPhotoOpen(open);
   }
 
+  checkDescription = (photo) => {
+    
+    var showText = null
+
+    if (photo.description != null) {
+      console.log("not null")
+      showText = photo.description;
+
+      if (showText.length > 10) {
+        showText = showText.substring(0,30) + " ..."
+      }
+    }else{
+      console.log("null")
+      showText = "Description not Available";
+    }
+
+    return showText;
+  }
+
   render() {
     const { classes, photo } = this.props;
 
@@ -70,7 +90,7 @@ class ImageCard extends React.Component {
               <img alt={photo.alt_description} src={photo.user.profile_image.medium}/>
             </Avatar>
           }
-          title={photo.alt_description}
+          title={photo.user.name}
           subheader={moment(photo.updated_at).calendar()}
         />
         <CardMedia
@@ -81,7 +101,7 @@ class ImageCard extends React.Component {
         />
         <CardContent>
           <Typography>
-            {photo.description}
+            {this.checkDescription(photo)}
           </Typography>
         </CardContent>
       </Card>

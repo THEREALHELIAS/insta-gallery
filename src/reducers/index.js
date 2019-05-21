@@ -3,7 +3,9 @@ import {combineReducers} from 'redux';
 
 import photoReducer from './photoReducer';
 
-export default combineReducers({
-	photos:photoReducer
+import appReducer from './appReducer';
 
+export default combineReducers({
+	photos:photoReducer,
+	sideBar: appReducer
 });

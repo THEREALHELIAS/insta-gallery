@@ -5,7 +5,9 @@ import photos from '../apis/unsplash';
 import {
 	SEARCH_PHOTOS,
 	MODAL_PHOTO_OPEN,
-	MODAL_PHOTO_CLOSE
+	MODAL_PHOTO_CLOSE,
+	SIDEBAR_CLOSE,
+	SIDEBAR_OPEN
 } from './types';
 
 
@@ -36,5 +38,18 @@ export const modalPhotoOpen = (id) => async dispatch => {
 export const modalPhotoClose = () => {
 	return {
 		type: MODAL_PHOTO_CLOSE
+	}
+}
+
+
+export const sideBarOpen = () => {
+	return{
+		type: SIDEBAR_OPEN
+	}
+}
+
+export const sideBarClose = () => {
+	return{
+		type: SIDEBAR_CLOSE
 	}
 }

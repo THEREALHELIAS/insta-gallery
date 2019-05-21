@@ -10,12 +10,21 @@ import history from '../history';
 
 import Header from './Header';
 
+import SideDrawer from './SideDrawer';
+
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
+
 const styles = {
+	root: {
+		flexGrow:1,
+		padding: 20
+  	},
 	container_margin_top: {
-		marginTop: 80
+		marginTop: 70
 	}
 }
 
@@ -23,8 +32,9 @@ const App = (props) => {
 	const { classes} = props	
 
 	return (
-		<div className="ui container">
+		<div className={classes.root}>
 			<Router history={history}>
+				<CssBaseline/>
 				<Header/>
 				<div className={classes.container_margin_top}>
 					<Switch>
@@ -32,6 +42,7 @@ const App = (props) => {
 
 					</Switch>
 				</div>
+				<SideDrawer/>
 			</Router>
 		</div>
 	)

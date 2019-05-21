@@ -8,12 +8,14 @@ import Grid from '@material-ui/core/Grid';
 
 import ImageCard from '../materials/ImageCard';
 
-class ImageList extends React.Component{
+const styles = {
+}
 
+class ImageList extends React.Component{
 	renderList(){
 		return this.props.photo_list.map((photo,i) => {
 			return (
-				<Grid key={i} item xs={3}>
+				<Grid key={i} item xs={12} sm={6} md={3} lg={3}>
 					<ImageCard photo={photo}/>
 				</Grid>
 			)
@@ -21,7 +23,7 @@ class ImageList extends React.Component{
 	}
 
 	render(){
-		console.log(this.props.photo_list)
+
 		return(
 			<div>
 				<Grid container spacing={24}>
@@ -36,4 +38,4 @@ ImageList.propTypes ={
 	classes: PropTypes.object.isRequired
 };
 
-export default withStyles(null)(ImageList);
+export default withStyles(styles)(ImageList);

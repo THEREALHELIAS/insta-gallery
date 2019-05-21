@@ -19,9 +19,6 @@ import ImageList from '../lists/ImageList';
 import ModalComp from '../materials/ModalComp';
 
 const styles = theme => ({
-  root: {
-    flexGrow: 1,
-  },
   paper: {
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
@@ -43,14 +40,15 @@ class GalleryHome extends React.Component {
 		const { classes } = this.props
 
 		return (
-		    <div className={classes.root}>
+		    <div>
 				<Grid container spacing={24}>
-					<Grid item xs={5}>
+					<Grid item xs={12} sm={12} md={12} lg={12}>
 						<Paper className={classes.paper}>
 							<SearchField onChange={this.onChange}/>
 						</Paper>
 					</Grid>
 				</Grid>
+				
 				<ImageList photo_list={this.props.photos}/>
 			    <ModalComp modal_status={this.props.isOpen} photo={this.props.photo}/>
 		    </div>
