@@ -6,19 +6,17 @@ import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 
-import Typography from '@material-ui/core/Typography';
+// const styles = {
+// 	field_style: {
 
-const styles = {
-	field_style: {
-
-	}
-};
+// 	}
+// };
 
 
 class SearchField extends React.Component{
 
 	onKeyPress = (e) => {
-		if (e.keyCode == 13) {
+		if (e.keyCode === 13) {
 			this.props.onChange(e.target.value);
 		}
 	}

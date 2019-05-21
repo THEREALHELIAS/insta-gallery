@@ -1,7 +1,5 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
-
 import { withStyles } from '@material-ui/core/styles';
 
 import Modal from '@material-ui/core/Modal';
@@ -13,8 +11,6 @@ import { modalPhotoClose } from '../../actions';
 import Typography from '@material-ui/core/Typography';
 
 import Button from '@material-ui/core/Button';
-
-import Grid from '@material-ui/core/Grid';
 
 import Card from '@material-ui/core/Card';
 
@@ -37,7 +33,7 @@ const styles = theme => ({
     boxShadow: theme.shadows[5],
     outline: 'none',
     width: '50%',
-    borderRadius: 5
+    borderRadius: 10
   },
   image:{
   	position: 'relative',
@@ -82,53 +78,54 @@ class ModalComp extends React.Component{
 	render(){
 		const { modal_status, photo, classes } = this.props
 
-		if (photo == "") {
+		if (photo) {
 			return (
+				
 				<Modal
 				aria-labelledby="simple-modal-title"
 				aria-describedby="simple-modal-description"
 				open={modal_status}
 				onClose={() => this.props.modalPhotoClose()}
-				>
+				>	
+					<div style={getModalStyle()} className={classes.paper}>
+			       		<Card className={classes.card}>
+			       			<CardHeader
+		   				         avatar={
+							        <Avatar aria-label="Recipe" className={classes.avatar}>
+							          <img alt={photo.alt_description} src={photo.user.profile_image.medium}/>
+							        </Avatar>
+							      }
+							      title={photo.alt_description}
+							      subheader={moment(photo.updated_at).calendar()}
+			       			/>
+			       			<CardMedia				   
+					          className={classes.media}
+					          image={photo.urls.regular}
+					          title={photo.alt_description}
+
+					        />
+					        <CardContent>
+					          <Typography>
+					            {photo.description}
+					          </Typography>
+					        </CardContent>
+					        <CardActions>
+					        	<Button color="primary">
+					        		Add To Personal PhotoList
+					        	</Button>
+					        </CardActions>
+			       		</Card>
+		          	</div>
 				</Modal>
 			)
 		}
-		console.log(photo)
+
 		return(
 			<Modal
 				aria-labelledby="simple-modal-title"
 				aria-describedby="simple-modal-description"
-				open={modal_status}
-				onClose={() => this.props.modalPhotoClose()}
-			>	
-				<div style={getModalStyle()} className={classes.paper}>
-		       		<Card className={classes.card}>
-		       			<CardHeader
-	   				         avatar={
-						        <Avatar aria-label="Recipe" className={classes.avatar}>
-						          <img src={photo.user.profile_image.medium}/>
-						        </Avatar>
-						      }
-						      title={photo.alt_description}
-						      subheader={moment(photo.updated_at).calendar()}
-		       			/>
-		       			<CardMedia				   
-				          className={classes.media}
-				          image={photo.urls.full}
-				          title={photo.alt_description}
-				        />
-				        <CardContent>
-				          <Typography>
-				            {photo.description}
-				          </Typography>
-				        </CardContent>
-				        <CardActions>
-				        	<Button color="primary">
-				        		Add To Personal PhotoList
-				        	</Button>
-				        </CardActions>
-		       		</Card>
-	          	</div>
+				open={false}
+				>
 			</Modal>
 		)
 	}

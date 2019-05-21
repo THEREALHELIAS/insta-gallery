@@ -1,4 +1,4 @@
-import _ from 'lodash';
+// import _ from 'lodash';
 
 import {
 	SEARCH_PHOTOS,
@@ -9,7 +9,7 @@ import {
 const initialState = {
 	photo_list: [],
 	isOpen: false,
-	single_photo:[]
+	single_photo:null
 }
 
 export default (state = initialState, action) => {

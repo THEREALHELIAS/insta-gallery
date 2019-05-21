@@ -1,6 +1,6 @@
 import photos from '../apis/unsplash';
  
-import history from '../history';
+// import history from '../history';
 
 import {
 	SEARCH_PHOTOS,
