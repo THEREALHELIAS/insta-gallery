@@ -10,7 +10,9 @@ import {
 	SIDEBAR_CLOSE,
 	SIDEBAR_OPEN,
 	ADD_TO_PERSONAL_LIST,
-	REMOVE_FROM_PERSONAL_LIST
+	REMOVE_FROM_PERSONAL_LIST,
+	FETCH_PHOTOS,
+	ERROR_STATUS
 } from './types';
 
 
@@ -59,12 +61,30 @@ export const sideBarClose = () => {
 
 
 export const addToPersonalList = (photo) => async dispatch => {
-	const response = await personalList.post('/personalList', ...photo);
+
+	await personalList.post('/personalList', {...photo})
+	.then (res => {
+		// console.log(res);
+		dispatch({
+			type: ADD_TO_PERSONAL_LIST,
+			payload: res.data
+		})
+	})
+	.catch( err =>{
+		dispatch({
+			type: ERROR_STATUS,
+			payload: err
+		})	
+	});
+}
+
+export const fetchPhotos= () => async dispatch => {
+	const response = await personalList.get(`/personalList`)
 
 	dispatch({
-		type: ADD_TO_PERSONAL_LIST,
+		type: FETCH_PHOTOS,
 		payload: response.data
-	});
+	})
 }
 
 export const removeFromPersonalList = () => async dispatch => {

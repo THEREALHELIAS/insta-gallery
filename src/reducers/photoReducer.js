@@ -4,13 +4,15 @@ import {
 	SEARCH_PHOTOS,
 	MODAL_PHOTO_OPEN,
 	MODAL_PHOTO_CLOSE,
-	ADD_TO_PERSONAL_LIST
+	ERROR_STATUS
 } from '../actions/types';
  
 const initialState = {
 	photo_list: [],
 	isOpen: false,
-	single_photo:null
+	single_photo:null,
+	existing_photos: null,
+	error_status: null
 }
 
 export default (state = initialState, action) => {
@@ -23,9 +25,8 @@ export default (state = initialState, action) => {
 			return {...state, isOpen: true, single_photo: action.payload}
 		case MODAL_PHOTO_CLOSE:
 			return {...state, isOpen: false}
-		case ADD_TO_PERSONAL_LIST: 
-			console.log(action.payload);
-			break;
+		case ERROR_STATUS:
+			return {...state, error_status: action.payload}
 		default:
 			return state;
 	}

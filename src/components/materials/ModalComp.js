@@ -6,7 +6,11 @@ import Modal from '@material-ui/core/Modal';
 
 import { connect } from 'react-redux';
 
-import { modalPhotoClose, addToPersonalList } from '../../actions';
+import { 
+		modalPhotoClose, 
+		addToPersonalList,
+		fetchPhotos
+	} from '../../actions';
 
 import Typography from '@material-ui/core/Typography';
 
@@ -74,10 +78,20 @@ function getModalStyle() {
 }
 
 class ModalComp extends React.Component{
+	componentDidMount(){
+		this.props.fetchPhotos();
+	}
+
+	addPhoto = () => {
+		this.props.addToPersonalList(this.props.photo);
+
+		if (this.props.errorStatus) {
+			console.log(this.props.errorStatus);
+		}
+	}
 
 	render(){
 		const { modal_status, photo, classes } = this.props
-
 		if (photo) {
 			return (
 				
@@ -110,7 +124,7 @@ class ModalComp extends React.Component{
 					          </Typography>
 					        </CardContent>
 					        <CardActions>
-					        	<Button color="primary">
+					        	<Button onClick={() => this.addPhoto()} color="primary">
 					        		Add To Personal PhotoList
 					        	</Button>
 					        </CardActions>
@@ -129,6 +143,12 @@ class ModalComp extends React.Component{
 			</Modal>
 		)
 	}
-}
+}	
 
-export default withStyles(styles)(connect(null,{ modalPhotoClose, addToPersonalList })(ModalComp));
+const mapStateToProps = (state) => {
+	return {
+		errorStatus : state.photos.error_status,
+		existingPhotos: state.photos.existing_photos
+	}
+}
+export default withStyles(styles)(connect(mapStateToProps,{ modalPhotoClose, addToPersonalList, fetchPhotos})(ModalComp));

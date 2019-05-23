@@ -45,7 +45,6 @@ class SideDrawer extends React.Component {
 
   render() {
     const { classes, sideBarStatus } = this.props;
-    console.log(this.props)
     const sideList = (
       <div className={classes.list}>
         <List>
@@ -96,7 +95,6 @@ SideDrawer.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     sideBarStatus: state.sideBar.sideBarStatus
   }

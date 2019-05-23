@@ -30,13 +30,10 @@ const styles = theme => ({
 
 class GalleryHome extends React.Component {
 	onChange = (query) => {
-		console.log(query);
-		console.log(this.props);
 		this.props.searchPhotos(query);
 	}
 
 	render(){
-		console.log(this.props)
 		const { classes } = this.props
 
 		return (
@@ -62,7 +59,6 @@ GalleryHome.propTypes ={
 };
 
 const mapStateToProps = (state) => {
-	console.log(state)
 	return {
 		photos: state.photos.photo_list,
 		isOpen: state.photos.isOpen,

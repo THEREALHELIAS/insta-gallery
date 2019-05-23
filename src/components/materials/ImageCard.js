@@ -47,16 +47,7 @@ const styles = theme => ({
 
 class ImageCard extends React.Component {
 
-
-  state = { expanded: false };
-
-  handleExpandClick = () => {
-    this.setState(state => ({ expanded: !state.expanded }));
-  };
-
   openModal = (open) => {
-    console.log('Open Modal!!!!');
-    console.log(this.props)
     this.props.modalPhotoOpen(open);
   }
 
@@ -65,14 +56,12 @@ class ImageCard extends React.Component {
     var showText = null
 
     if (photo.description != null) {
-      console.log("not null")
       showText = photo.description;
 
       if (showText.length > 10) {
         showText = showText.substring(0,30) + " ..."
       }
     }else{
-      console.log("null")
       showText = "Description not Available";
     }
 
@@ -114,8 +103,6 @@ ImageCard.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state)
-  console.log(ownProps)
   return {
     isOpen: state.photos.isOpen
   }

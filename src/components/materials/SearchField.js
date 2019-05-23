@@ -22,7 +22,6 @@ class SearchField extends React.Component{
 	}
 
 	render(){ 
-		console.log(this.props.onChange);
 		return (
 			<React.Fragment>
 				<TextField 
