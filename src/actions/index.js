@@ -1,4 +1,5 @@
 import photos from '../apis/unsplash';
+import personalList from '../apis/personalList';
  
 // import history from '../history';
 
@@ -7,7 +8,9 @@ import {
 	MODAL_PHOTO_OPEN,
 	MODAL_PHOTO_CLOSE,
 	SIDEBAR_CLOSE,
-	SIDEBAR_OPEN
+	SIDEBAR_OPEN,
+	ADD_TO_PERSONAL_LIST,
+	REMOVE_FROM_PERSONAL_LIST
 } from './types';
 
 
@@ -52,4 +55,18 @@ export const sideBarClose = () => {
 	return{
 		type: SIDEBAR_CLOSE
 	}
+}
+
+
+export const addToPersonalList = (photo) => async dispatch => {
+	const response = await personalList.post('/personalList', ...photo);
+
+	dispatch({
+		type: ADD_TO_PERSONAL_LIST,
+		payload: response.data
+	});
+}
+
+export const removeFromPersonalList = () => async dispatch => {
+	console.log("Remove from personal list...");
 }

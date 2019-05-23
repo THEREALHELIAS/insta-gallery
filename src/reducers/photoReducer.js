@@ -3,7 +3,8 @@
 import {
 	SEARCH_PHOTOS,
 	MODAL_PHOTO_OPEN,
-	MODAL_PHOTO_CLOSE
+	MODAL_PHOTO_CLOSE,
+	ADD_TO_PERSONAL_LIST
 } from '../actions/types';
  
 const initialState = {
@@ -22,6 +23,9 @@ export default (state = initialState, action) => {
 			return {...state, isOpen: true, single_photo: action.payload}
 		case MODAL_PHOTO_CLOSE:
 			return {...state, isOpen: false}
+		case ADD_TO_PERSONAL_LIST: 
+			console.log(action.payload);
+			break;
 		default:
 			return state;
 	}

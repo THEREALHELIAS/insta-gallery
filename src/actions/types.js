@@ -7,3 +7,9 @@ export const MODAL_PHOTO_CLOSE = 'MODAL_PHOTO_CLOSE';
 export const SIDEBAR_OPEN = 'SIDEBAR_OPEN';
 
 export const SIDEBAR_CLOSE = 'SIDEBAR_CLOSE';
+
+// Actions for Photo list
+
+export const ADD_TO_PERSONAL_LIST = 'ADD_TO_PERSONAL_LIST';
+
+export const REMOVE_FROM_PERSONAL_LIST = 'REMOVE_FROM_PERSONAL_LIST';

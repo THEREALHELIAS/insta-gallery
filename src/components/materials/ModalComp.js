@@ -6,7 +6,7 @@ import Modal from '@material-ui/core/Modal';
 
 import { connect } from 'react-redux';
 
-import { modalPhotoClose } from '../../actions';
+import { modalPhotoClose, addToPersonalList } from '../../actions';
 
 import Typography from '@material-ui/core/Typography';
 
@@ -131,4 +131,4 @@ class ModalComp extends React.Component{
 	}
 }
 
-export default withStyles(styles)(connect(null,{ modalPhotoClose })(ModalComp));
+export default withStyles(styles)(connect(null,{ modalPhotoClose, addToPersonalList })(ModalComp));
