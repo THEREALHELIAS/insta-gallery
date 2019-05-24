@@ -106,6 +106,11 @@ export const fetchPhotos = () => async dispatch => {
 	})
 }
 
-export const removeFromPersonalList = () => async dispatch => {
-	console.log("Remove from personal list...");
+export const removeFromPersonalList = (id) => async dispatch => {
+	await personalList.delete(`/personalList/${id}`)
+
+	dispatch({
+		type: REMOVE_FROM_PERSONAL_LIST,
+		payload: id
+	})
 }

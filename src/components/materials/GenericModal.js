@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 import { 
 		genericModalClose
 	} from '../../actions';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
 function getModalStyle() {

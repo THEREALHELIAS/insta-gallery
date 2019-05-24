@@ -15,6 +15,8 @@ export default (state = initialState, action) => {
 			return {...state, [action.payload.id]:action.payload}
 		case FETCH_PHOTOS:
 			return {...state, ..._.mapKeys(action.payload,'id')}
+		case REMOVE_FROM_PERSONAL_LIST:
+			return _.omit(state, action.payload)
 		default:
 			return state;
 	}

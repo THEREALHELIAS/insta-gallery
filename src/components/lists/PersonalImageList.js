@@ -4,12 +4,15 @@ import Grid from '@material-ui/core/Grid';
 
 import GenericImageCard from '../materials/GenericImageCard';
 
-import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
 
 import Typography from '@material-ui/core/Typography';
 
 import { connect } from 'react-redux';
 
+import {
+	removeFromPersonalList
+} from '../../actions'
 
 class PersonalImageList extends React.Component{
 
@@ -30,8 +33,15 @@ class PersonalImageList extends React.Component{
 		)
 	}
 
+	renderActions = (id) => {
+		return (
+			<Button onClick={() => this.props.removeFromPersonalList(id)} color="secondary">
+				Remove from list
+			</Button>
+		)
+	}
+
 	renderList(){
-		console.log(this.props)
 		return this.props.existingPhotos.map((photo,i) => {
 			return (
 				<Grid key={i} item xs={12} sm={6} md={3} lg={3}>
@@ -39,7 +49,7 @@ class PersonalImageList extends React.Component{
 						title={this.renderTitle(photo.user.name)}
 						image={photo.urls.full} 
 						content={this.renderContent(photo)}
-						actions={null}
+						actions={this.renderActions(photo.id)}
 					/>					
 				</Grid>
 			)
@@ -56,4 +66,4 @@ class PersonalImageList extends React.Component{
 }
 
 
-export default connect(null,{})(PersonalImageList);
+export default connect(null,{removeFromPersonalList})(PersonalImageList);
