@@ -4,9 +4,15 @@ export const MODAL_PHOTO_OPEN = 'MODAL_PHOTO_OPEN';
 
 export const MODAL_PHOTO_CLOSE = 'MODAL_PHOTO_CLOSE';
 
+// Actions for App
+
 export const SIDEBAR_OPEN = 'SIDEBAR_OPEN';
 
 export const SIDEBAR_CLOSE = 'SIDEBAR_CLOSE';
+
+export const GENERIC_MODAL_OPEN = 'GENERIC_MODAL_OPEN';
+
+export const GENERIC_MODAL_CLOSE = 'GENERIC_MODAL_CLOSE';
 
 // Actions for Photo list
 
@@ -17,3 +23,4 @@ export const REMOVE_FROM_PERSONAL_LIST = 'REMOVE_FROM_PERSONAL_LIST';
 export const FETCH_PHOTOS = 'FETCH_PHOTOS';
 
 export const ERROR_STATUS = 'ERROR_STATUS';
+

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import _ from 'lodash';
+
 import { withStyles } from '@material-ui/core/styles';
 
 import Modal from '@material-ui/core/Modal';
@@ -9,7 +11,9 @@ import { connect } from 'react-redux';
 import { 
 		modalPhotoClose, 
 		addToPersonalList,
-		fetchPhotos
+		fetchPhotos,
+		genericModalOpen,
+		genericModalClose
 	} from '../../actions';
 
 import Typography from '@material-ui/core/Typography';
@@ -29,6 +33,19 @@ import Avatar from '@material-ui/core/Avatar';
 import CardActions from '@material-ui/core/CardActions';
 
 import moment from 'moment'
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+
+import { 
+	faCheckCircle
+ } from '@fortawesome/free-solid-svg-icons'
+
+library.add(
+  faCheckCircle
+)
 
 const styles = theme => ({
   paper: {
@@ -82,11 +99,73 @@ class ModalComp extends React.Component{
 		this.props.fetchPhotos();
 	}
 
-	addPhoto = () => {
-		this.props.addToPersonalList(this.props.photo);
+	errorHeader = () => {
+		return (
+			<Typography color="error" variant="subtitle1" align="center">
+				Warning: Photo
+			</Typography>
+		)
+	}
 
-		if (this.props.errorStatus) {
-			console.log(this.props.errorStatus);
+	errorContent = () =>{
+		return (
+			<Typography>
+				This photo already existed in your personal list.
+			</Typography>
+		)
+	}
+
+	errorActions = () => {
+		return (
+			<Button onClick={() => this.props.genericModalClose()} color="secondary">
+				Close
+			</Button>
+		)
+	}
+
+
+	addPhoto = () => {
+		if(_.some(this.props.existingPhotos, ['id',this.props.photo.id])){
+			const header = this.errorHeader()
+			const content = this.errorContent();
+			const actions = this.errorActions();
+
+			this.props.modalPhotoClose();
+			this.props.genericModalOpen({modalHeader: header, modalContent: content, modalActions: actions})
+		}else{
+			this.props.addToPersonalList(this.props.photo);
+			this.props.modalPhotoClose();
+
+			const header = () => {
+				return (
+					<Typography color="primary" variant="subtitle1" align="center">
+						Success <FontAwesomeIcon icon="check-circle"/>
+					</Typography>
+				)
+			}	
+
+			const content = () => {
+				return (
+					<Typography>
+						Photo successfully added to your list.
+					</Typography>
+				)
+			}
+
+			const actions = () => {
+				return(
+					<Button onClick={() => this.props.genericModalClose()} color="secondary">
+						Close
+					</Button>
+				)
+			}
+
+			this.props.genericModalOpen({
+				modalHeader: header(),
+				modalContent: content(),
+				modalActions: actions()
+			})
+
 		}
 	}
 
@@ -148,7 +227,7 @@ class ModalComp extends React.Component{
 const mapStateToProps = (state) => {
 	return {
 		errorStatus : state.photos.error_status,
-		existingPhotos: state.photos.existing_photos
+		existingPhotos: Object.values(state.existingPhotos)
 	}
 }
-export default withStyles(styles)(connect(mapStateToProps,{ modalPhotoClose, addToPersonalList, fetchPhotos})(ModalComp));
+export default withStyles(styles)(connect(mapStateToProps,{ modalPhotoClose, addToPersonalList, fetchPhotos, genericModalOpen, genericModalClose})(ModalComp));

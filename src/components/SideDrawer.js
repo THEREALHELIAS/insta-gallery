@@ -96,7 +96,7 @@ SideDrawer.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    sideBarStatus: state.sideBar.sideBarStatus
+    sideBarStatus: state.app.sideBarStatus
   }
 }
 

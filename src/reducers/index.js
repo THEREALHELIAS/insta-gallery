@@ -9,6 +9,6 @@ import appReducer from './appReducer';
 
 export default combineReducers({
 	photos: photoReducer,
-	sideBar: appReducer,
+	app: appReducer,
 	existingPhotos: existingPhotosReducer
 });

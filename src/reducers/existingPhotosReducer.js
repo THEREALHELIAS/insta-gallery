@@ -7,13 +7,14 @@ import {
 
 } from '../actions/types';
 
+const initialState = {};
 
-export default (state = {}, action) => {
+export default (state = initialState, action) => {
 	switch(action.type){
 		case ADD_TO_PERSONAL_LIST: 
-			return {...state, [action.payload.id] : action.payload}
+			return {...state, [action.payload.id]:action.payload}
 		case FETCH_PHOTOS:
-			return {...state,..._.mapKeys(action.payload,'id')}
+			return {...state, ..._.mapKeys(action.payload,'id')}
 		default:
 			return state;
 	}

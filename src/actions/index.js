@@ -12,10 +12,12 @@ import {
 	ADD_TO_PERSONAL_LIST,
 	REMOVE_FROM_PERSONAL_LIST,
 	FETCH_PHOTOS,
-	ERROR_STATUS
+	ERROR_STATUS,
+	GENERIC_MODAL_CLOSE,
+	GENERIC_MODAL_OPEN
 } from './types';
 
-
+// Actions for photoReducer
 
 export const searchPhotos = (query) => async dispatch => {
 	const response = await photos.get('/search/photos/', {
@@ -47,6 +49,8 @@ export const modalPhotoClose = () => {
 }
 
 
+// Actions for appReducer
+
 export const sideBarOpen = () => {
 	return{
 		type: SIDEBAR_OPEN
@@ -60,11 +64,26 @@ export const sideBarClose = () => {
 }
 
 
+export const genericModalOpen = (content) => {
+	return{
+		type: GENERIC_MODAL_OPEN,
+		payload: content
+	}
+}
+
+export const genericModalClose = ( ) => {
+	return{
+		type: GENERIC_MODAL_CLOSE
+	}
+}
+
+// Actions for existingPhotoReducer
+
 export const addToPersonalList = (photo) => async dispatch => {
 
 	await personalList.post('/personalList', {...photo})
 	.then (res => {
-		// console.log(res);
+		console.log(res);
 		dispatch({
 			type: ADD_TO_PERSONAL_LIST,
 			payload: res.data

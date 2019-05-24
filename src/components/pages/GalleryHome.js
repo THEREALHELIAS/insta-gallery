@@ -18,6 +18,8 @@ import ImageList from '../lists/ImageList';
 
 import ModalComp from '../materials/ModalComp';
 
+import GenericModal from '../materials/GenericModal';
+
 const styles = theme => ({
   paper: {
     padding: theme.spacing.unit * 2,
@@ -47,6 +49,7 @@ class GalleryHome extends React.Component {
 				</Grid>
 				
 				<ImageList photo_list={this.props.photos}/>
+				<GenericModal />
 			    <ModalComp modal_status={this.props.isOpen} photo={this.props.photo}/>
 		    </div>
 	    )
