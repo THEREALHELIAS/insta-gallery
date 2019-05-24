@@ -97,7 +97,7 @@ export const addToPersonalList = (photo) => async dispatch => {
 	});
 }
 
-export const fetchPhotos= () => async dispatch => {
+export const fetchPhotos = () => async dispatch => {
 	const response = await personalList.get(`/personalList`)
 
 	dispatch({
