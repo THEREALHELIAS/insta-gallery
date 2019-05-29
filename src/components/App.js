@@ -4,19 +4,14 @@ import 'typeface-roboto';
 
 import { Router, Route, Switch } from 'react-router-dom';
 
-import GalleryHome from './pages/GalleryHome';
-
-import PersonalGallery from './pages/PersonalGallery';
-
 import history from '../history';
 
-import Header from './Header';
+import EntryPage from './pages/EntryPage';
 
-import SideDrawer from './SideDrawer';
-
-import CssBaseline from '@material-ui/core/CssBaseline';
+import MainUser from './MainUser';
 
 import { withStyles } from '@material-ui/core/styles';
+
 import PropTypes from 'prop-types';
 
 
@@ -24,10 +19,7 @@ const styles = {
 	root: {
 		flexGrow:1,
 		padding: 20
-  	},
-	container_margin_top: {
-		marginTop: 70
-	}
+  	}
 }
 
 const App = (props) => {
@@ -36,15 +28,10 @@ const App = (props) => {
 	return (
 		<div className={classes.root}>
 			<Router history={history}>
-				<CssBaseline/>
-				<Header/>
-				<div className={classes.container_margin_top}>
-					<Switch>
-						<Route path='/' exact component={GalleryHome}/>
-						<Route path='/personal-gallery' exact component={PersonalGallery}/>
-					</Switch>
-				</div>
-				<SideDrawer/>
+				<Switch>
+					<Route path='/user' component={MainUser}/>
+					<Route path='/entry' component={EntryPage}/>
+				</Switch>
 			</Router>
 		</div>
 	)

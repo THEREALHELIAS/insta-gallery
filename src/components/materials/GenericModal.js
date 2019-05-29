@@ -11,6 +11,8 @@ import {
 	} from '../../actions';
 import Divider from '@material-ui/core/Divider';
 
+import Grid from '@material-ui/core/Grid';
+
 function getModalStyle() {
   const top = 50;
   const left = 50;
@@ -37,7 +39,7 @@ const styles = theme => ({
  	maxHeight: '100%'
   },
   card: {
-    maxWidth: 900,
+    maxWidth: 1500,
   },
   media: {
     
@@ -55,6 +57,11 @@ const styles = theme => ({
   },
   expandOpen: {
     transform: 'rotate(180deg)',
+  },
+  modal: {
+    overflow:'scroll',
+    display: 'block',
+    height: '100%'
   }
 });
 
@@ -65,26 +72,29 @@ class GenericModal extends React.Component{
 		const { classes } = this.props;
 		return(
 			<Modal
+        className={classes.modal}
 				aria-labelledby="simple-modal-title"
 				aria-describedby="simple-modal-description"
 				open={this.props.modalStatus}
 				onClose={() => this.props.genericModalClose()}
 				>
-				<div style={getModalStyle()} className={classes.paper}>
-			       		<Card className={classes.card}>
-			       			<CardHeader
-							      title={this.props.modalLayout.modalHeader}
-			       			/>
-			       			<Divider/>
-					        <CardContent>
-					          	{this.props.modalLayout.modalContent}
-					        </CardContent>
-					        <Divider/>
-					        <CardActions>
-					        	{this.props.modalLayout.modalActions}
-					        </CardActions>
-			       		</Card>
-		          	</div>
+  				<div style={getModalStyle()}>
+            <Grid className={classes.paper} container>
+  	       		<Card className={classes.card}>
+  	       			<CardHeader
+  					      title={this.props.modalLayout.modalHeader}
+  	       			/>
+  	       			<Divider/>
+  			        <CardContent>
+  			          	{this.props.modalLayout.modalContent}
+  			        </CardContent>
+  			        <Divider/>
+  			        <CardActions>
+  			        	{this.props.modalLayout.modalActions}
+  			        </CardActions>
+  	       		</Card>
+            </Grid>
+        	</div>
 			</Modal>
 		)
 	}

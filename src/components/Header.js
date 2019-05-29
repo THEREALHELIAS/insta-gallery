@@ -44,7 +44,7 @@ class Header extends React.Component{
 			<div>
 				<AppBar className={classes.header_style} position="fixed" >
 					<Toolbar>
-						<Link to="/"  style={{ textDecoration: 'none', color: 'white' }} className={classes.grow}>
+						<Link to="/user"  style={{ textDecoration: 'none', color: 'white' }} className={classes.grow}>
 							<Typography  variant="body2" color="inherit">
 								Surf Ya Photos!
 							</Typography>

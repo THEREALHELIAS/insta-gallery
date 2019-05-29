@@ -1,5 +1,7 @@
 import React from 'react';
 
+import _ from 'lodash';
+
 import Grid from '@material-ui/core/Grid';
 
 import GenericImageCard from '../materials/GenericImageCard';
@@ -13,6 +15,8 @@ import { connect } from 'react-redux';
 import {
 	removeFromPersonalList
 } from '../../actions'
+
+import { Link } from 'react-router-dom'
 
 class PersonalImageList extends React.Component{
 
@@ -42,6 +46,8 @@ class PersonalImageList extends React.Component{
 	}
 
 	renderList(){
+		console.log(_.isLength(this.props.existingPhotos))
+
 		return this.props.existingPhotos.map((photo,i) => {
 			return (
 				<Grid key={i} item xs={12} sm={6} md={3} lg={3}>

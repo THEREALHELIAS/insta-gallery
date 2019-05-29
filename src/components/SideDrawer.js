@@ -55,7 +55,7 @@ class SideDrawer extends React.Component {
             <ListItemText primary={"Personal Info"}/>
           </ListItem>
 
-          <Link to="/personal-gallery" style={{ textDecoration: 'none' }}>
+          <Link to="/user/personal-gallery" style={{ textDecoration: 'none' }}>
             <ListItem button>
                 <ListItemIcon>
                   <FontAwesomeIcon icon="list"/>
