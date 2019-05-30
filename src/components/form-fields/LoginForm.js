@@ -20,7 +20,7 @@ import Typography from '@material-ui/core/Typography';
 
 import Link from '@material-ui/core/Link';
 
-import { genericModalOpen } from '../../actions'
+import { genericDialogOpen } from '../../actions'
 
 import { connect } from 'react-redux';
 
@@ -46,18 +46,10 @@ class LoginForm extends React.Component {
 		)
 	}
 
-	renderSignUpHeader = () => {
-		return(
-			<Typography variant="subtitle1" align="center">
-				Sign Up
-			</Typography>
-		)
-	}
-
 	onClickSignUp = () => {
-		this.props.genericModalOpen({
-			modalHeader: this.renderSignUpHeader(),
-			modalContent: this.renderSignUp()
+		this.props.genericDialogOpen({
+			dialogHeader: "Sign Up",
+			dialogContent: this.renderSignUp()
 		});
 	}
 
@@ -114,4 +106,4 @@ class LoginForm extends React.Component {
 
 export default reduxForm({
 	form:'LoginForm'
-})(withStyles(styles)(connect(null,{genericModalOpen})(LoginForm)));
+})(withStyles(styles)(connect(null,{genericDialogOpen})(LoginForm)));

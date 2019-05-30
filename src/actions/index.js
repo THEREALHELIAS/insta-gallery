@@ -14,7 +14,9 @@ import {
 	FETCH_PHOTOS,
 	ERROR_STATUS,
 	GENERIC_MODAL_CLOSE,
-	GENERIC_MODAL_OPEN
+	GENERIC_MODAL_OPEN,
+	GENERIC_DIALOG_OPEN,
+	GENERIC_DIALOG_CLOSE
 } from './types';
 
 // Actions for photoReducer
@@ -74,6 +76,19 @@ export const genericModalOpen = (content) => {
 export const genericModalClose = ( ) => {
 	return{
 		type: GENERIC_MODAL_CLOSE
+	}
+}
+
+export const genericDialogOpen = (content) => {
+	return {
+		type: GENERIC_DIALOG_OPEN,
+		payload: content
+	}
+}
+
+export const genericDialogClose = () => {
+	return{
+		type: GENERIC_DIALOG_CLOSE
 	}
 }
 
